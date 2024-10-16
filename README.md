@@ -1,3 +1,3 @@
-This is a minimal example reproducing a strange memoy leak when using Fortran with iso_c_binding to call HIP C. 
+If either the allocation or the freeing is done using blocking functions it is ok. 
 
-The HIP C code doing identical work does not seem to have this issue.
+When  both are Async the cpu memory usage keeps increasing until runs out.
