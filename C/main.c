@@ -67,8 +67,8 @@ int main(int argc, char *argv[]) {
 
     for (int n_ii = 1; n_ii <= 10000000; n_ii++) {
         // Allocate device memory
-        hipMalloc(&A_d, size);
-        hipMalloc(&B_d, size);
+        hipMallocAsync(&A_d, size, gpu_stream);
+        hipMallocAsync(&B_d, size, gpu_stream);
 
         // Copy data from host to device
         hipMemcpyAsync(A_d, A_h, size, hipMemcpyHostToDevice, gpu_stream);
@@ -79,11 +79,11 @@ int main(int argc, char *argv[]) {
         hipMemcpyAsync(C_h, A_d, size, hipMemcpyDeviceToHost, gpu_stream);
 
         // Free device memory
-        hipFree(A_d);
-        hipFree(B_d);
+        hipFreeAsync(A_d, gpu_stream);
+        hipFreeAsync(B_d, gpu_stream);
 
         // Synchronize device
-        hipStreamSynchronize(gpu_stream);
+        gpuErrchk( hipDeviceSynchronize() ); //hipStreamSynchronize(gpu_stream);
 
         // Print the iteration number and difference sums
         double sum_A_diff = 0.0, sum_B_diff = 0.0;
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
         }
         printf("Iteration: %d, Sum_A_Diff: %f, Sum_B_Diff: %f\n", n_ii, sum_A_diff, sum_B_diff);
     }
-
+   
     // Free host memory
     free(A_h);
     free(B_h);
