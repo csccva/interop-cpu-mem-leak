@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
         }
         printf("Iteration: %d, Sum_A_Diff: %f, Sum_B_Diff: %f\n", n_ii, sum_A_diff, sum_B_diff);
     }
-   
+
     // Free host memory
     free(A_h);
     free(B_h);
