@@ -1,4 +1,7 @@
-//CC -xhip -munsafe-fp-atomics -g -ggdb  --offload-arch=gfx90a -O3 main.c -o hip.out
+//module load LUMI/24.03
+//module load partition/G
+//module load rocm
+//CC -xhip -munsafe-fp-atomic --offload-arch=gfx90a -O3 main.c -o hip.out
 #include <stdio.h>
 #include <stdlib.h>
 #include <hip/hip_runtime.h>
