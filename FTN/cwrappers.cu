@@ -2,7 +2,7 @@
 //module load partition/G
 //module use  /appl/local/containers/test-modules  
 //module load rocm/6.2.2
-// hipcc -munsafe-fp-atomics --offload-arch=gfx90a -O3 main.cu -o hip.out
+// hipcc -munsafe-fp-atomics --offload-arch=gfx90a -O3 -c cwrappers.cu
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
