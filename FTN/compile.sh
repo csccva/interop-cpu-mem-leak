@@ -1,6 +1,7 @@
 #module load LUMI
 #module load partition/G
-#module load rocm
+#module use  /appl/local/containers/test-modules  
+#module load rocm/6.2.2
 
 rm *.mod *.o *.i a.out;
 hipcc -munsafe-fp-atomics -g -ggdb  --offload-arch=gfx90a -O3 -c cwrappers.cu
