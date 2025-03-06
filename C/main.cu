@@ -1,14 +1,14 @@
 //module load LUMI/24.03
 //module load partition/G
 //module load rocm
-//CC -xhip -munsafe-fp-atomic --offload-arch=gfx90a -O3 main.c -o hip.out
+// hipcc -munsafe-fp-atomics --offload-arch=gfx90a -O3 main.cu -o hip.out
 #include <stdio.h>
 #include <stdlib.h>
 #include <hip/hip_runtime.h>
-#include <mpi.h>
+// #include <mpi.h>
 
 #include <cstdio>
-#include <cstdlib>
+ #include <cstdlib>
 #include <ctime>
 
 #include <cmath>
@@ -47,9 +47,9 @@ int main(int argc, char *argv[]) {
     size_t size = nx * ny * sizeof(double);
 
     // MPI Initialization
-    MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    // MPI_Init(&argc, &argv);
+    // MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
+    // MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
     // Allocate host memory
     A_h = (double *)malloc(size);
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
     hipStreamDestroy(gpu_stream);
 
     // Finalize MPI
-    MPI_Finalize();
+    // MPI_Finalize();
 
     return 0;
 }
