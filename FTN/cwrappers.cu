@@ -1,5 +1,8 @@
-// rm *.mod *.o *.i
-// CC -xhip -munsafe-fp-atomics -g -ggdb  --offload-arch=gfx90a -O3 -c cwrappers.c
+//module load LUMI
+//module load partition/G
+//module use  /appl/local/containers/test-modules  
+//module load rocm/6.2.2
+// hipcc -munsafe-fp-atomics --offload-arch=gfx90a -O3 main.cu -o hip.out
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
