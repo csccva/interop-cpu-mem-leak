@@ -1,6 +1,6 @@
-module load LUMI
-module load partition/G
-module load rocm
+#module load LUMI
+#module load partition/G
+#module load rocm
 
 rm *.mod *.o *.i a.out;
 CC -xhip -munsafe-fp-atomics -g -ggdb  --offload-arch=gfx90a -O3 -c cwrappers.c 
